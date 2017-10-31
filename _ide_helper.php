@@ -3238,98 +3238,6 @@ namespace Illuminate\Support\Facades {
          
     }
 
-    class Crypt {
-        
-        /**
-         * Determine if the given key and cipher combination is valid.
-         *
-         * @param string $key
-         * @param string $cipher
-         * @return bool 
-         * @static 
-         */ 
-        public static function supported($key, $cipher)
-        {
-            return \Illuminate\Encryption\Encrypter::supported($key, $cipher);
-        }
-        
-        /**
-         * Create a new encryption key for the given cipher.
-         *
-         * @param string $cipher
-         * @return string 
-         * @static 
-         */ 
-        public static function generateKey($cipher)
-        {
-            return \Illuminate\Encryption\Encrypter::generateKey($cipher);
-        }
-        
-        /**
-         * Encrypt the given value.
-         *
-         * @param mixed $value
-         * @param bool $serialize
-         * @return string 
-         * @throws \Illuminate\Contracts\Encryption\EncryptException
-         * @static 
-         */ 
-        public static function encrypt($value, $serialize = true)
-        {
-            return \Illuminate\Encryption\Encrypter::encrypt($value, $serialize);
-        }
-        
-        /**
-         * Encrypt a string without serialization.
-         *
-         * @param string $value
-         * @return string 
-         * @static 
-         */ 
-        public static function encryptString($value)
-        {
-            return \Illuminate\Encryption\Encrypter::encryptString($value);
-        }
-        
-        /**
-         * Decrypt the given value.
-         *
-         * @param mixed $payload
-         * @param bool $unserialize
-         * @return string 
-         * @throws \Illuminate\Contracts\Encryption\DecryptException
-         * @static 
-         */ 
-        public static function decrypt($payload, $unserialize = true)
-        {
-            return \Illuminate\Encryption\Encrypter::decrypt($payload, $unserialize);
-        }
-        
-        /**
-         * Decrypt the given string without unserialization.
-         *
-         * @param string $payload
-         * @return string 
-         * @static 
-         */ 
-        public static function decryptString($payload)
-        {
-            return \Illuminate\Encryption\Encrypter::decryptString($payload);
-        }
-        
-        /**
-         * Get the encryption key.
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getKey()
-        {
-            return \Illuminate\Encryption\Encrypter::getKey();
-        }
-         
-    }
-
     class DB {
         
         /**
@@ -12138,6 +12046,1657 @@ namespace Illuminate\Support\Facades {
  
 }
 
+namespace App\Facades { 
+
+    class GmailFacade {
+        
+        /**
+         * Save access token into session.
+         *
+         * @param array $accessToken
+         * @static 
+         */ 
+        public static function saveAccessToken($accessToken)
+        {
+            return \App\Services\GmailService::saveAccessToken($accessToken);
+        }
+        
+        /**
+         * Set token from session and refresh if it expired.
+         *
+         * @static 
+         */ 
+        public static function setToken()
+        {
+            return \App\Services\GmailService::setToken();
+        }
+        
+        /**
+         * Get auth url.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getAuthUrl()
+        {
+            return \App\Services\GmailService::getAuthUrl();
+        }
+        
+        /**
+         * Get files from gmail account.
+         *
+         * @param string $query
+         * @param int $maxResults
+         * @param string $fileFormat
+         * @return array 
+         * @static 
+         */ 
+        public static function getFiles($query, $maxResults, $fileFormat)
+        {
+            return \App\Services\GmailService::getFiles($query, $maxResults, $fileFormat);
+        }
+        
+        /**
+         * Get a string containing the version of the library.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getLibraryVersion()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::getLibraryVersion();
+        }
+        
+        /**
+         * For backwards compatibility
+         * alias for fetchAccessTokenWithAuthCode
+         *
+         * @param $code string code from accounts.google.com
+         * @return array access token
+         * @deprecated 
+         * @static 
+         */ 
+        public static function authenticate($code)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::authenticate($code);
+        }
+        
+        /**
+         * Attempt to exchange a code for an valid authentication token.
+         * 
+         * Helper wrapped around the OAuth 2.0 implementation.
+         *
+         * @param $code string code from accounts.google.com
+         * @return array access token
+         * @static 
+         */ 
+        public static function fetchAccessTokenWithAuthCode($code)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::fetchAccessTokenWithAuthCode($code);
+        }
+        
+        /**
+         * For backwards compatibility
+         * alias for fetchAccessTokenWithAssertion
+         *
+         * @return array access token
+         * @deprecated 
+         * @static 
+         */ 
+        public static function refreshTokenWithAssertion()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::refreshTokenWithAssertion();
+        }
+        
+        /**
+         * Fetches a fresh access token with a given assertion token.
+         *
+         * @param $assertionCredentials optional.
+         * @return array access token
+         * @static 
+         */ 
+        public static function fetchAccessTokenWithAssertion($authHttp = null)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::fetchAccessTokenWithAssertion($authHttp);
+        }
+        
+        /**
+         * For backwards compatibility
+         * alias for fetchAccessTokenWithRefreshToken
+         *
+         * @param string $refreshToken
+         * @return array access token
+         * @static 
+         */ 
+        public static function refreshToken($refreshToken)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::refreshToken($refreshToken);
+        }
+        
+        /**
+         * Fetches a fresh OAuth 2.0 access token with the given refresh token.
+         *
+         * @param string $refreshToken
+         * @return array access token
+         * @static 
+         */ 
+        public static function fetchAccessTokenWithRefreshToken($refreshToken = null)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::fetchAccessTokenWithRefreshToken($refreshToken);
+        }
+        
+        /**
+         * Create a URL to obtain user authorization.
+         * 
+         * The authorization endpoint allows the user to first
+         * authenticate, and then grant/deny the access request.
+         *
+         * @param string|array $scope The scope is expressed as an array or list of space-delimited strings.
+         * @return string 
+         * @static 
+         */ 
+        public static function createAuthUrl($scope = null)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::createAuthUrl($scope);
+        }
+        
+        /**
+         * Adds auth listeners to the HTTP client based on the credentials
+         * set in the Google API Client object
+         *
+         * @param \GuzzleHttp\ClientInterface $http the http client object.
+         * @return \GuzzleHttp\ClientInterface the http client object
+         * @static 
+         */ 
+        public static function authorize($http = null)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::authorize($http);
+        }
+        
+        /**
+         * Set the configuration to use application default credentials for
+         * authentication
+         *
+         * @see https://developers.google.com/identity/protocols/application-default-credentials
+         * @param boolean $useAppCreds
+         * @static 
+         */ 
+        public static function useApplicationDefaultCredentials($useAppCreds = true)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::useApplicationDefaultCredentials($useAppCreds);
+        }
+        
+        /**
+         * To prevent useApplicationDefaultCredentials from inappropriately being
+         * called in a conditional
+         *
+         * @see https://developers.google.com/identity/protocols/application-default-credentials
+         * @static 
+         */ 
+        public static function isUsingApplicationDefaultCredentials()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::isUsingApplicationDefaultCredentials();
+        }
+        
+        /**
+         * 
+         *
+         * @param string|array $token
+         * @throws InvalidArgumentException
+         * @static 
+         */ 
+        public static function setAccessToken($token)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setAccessToken($token);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getAccessToken()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::getAccessToken();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getRefreshToken()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::getRefreshToken();
+        }
+        
+        /**
+         * Returns if the access_token is expired.
+         *
+         * @return bool Returns True if the access_token is expired.
+         * @static 
+         */ 
+        public static function isAccessTokenExpired()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::isAccessTokenExpired();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getAuth()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::getAuth();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setAuth($auth)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setAuth($auth);
+        }
+        
+        /**
+         * Set the OAuth 2.0 Client ID.
+         *
+         * @param string $clientId
+         * @static 
+         */ 
+        public static function setClientId($clientId)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setClientId($clientId);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getClientId()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::getClientId();
+        }
+        
+        /**
+         * Set the OAuth 2.0 Client Secret.
+         *
+         * @param string $clientSecret
+         * @static 
+         */ 
+        public static function setClientSecret($clientSecret)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setClientSecret($clientSecret);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getClientSecret()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::getClientSecret();
+        }
+        
+        /**
+         * Set the OAuth 2.0 Redirect URI.
+         *
+         * @param string $redirectUri
+         * @static 
+         */ 
+        public static function setRedirectUri($redirectUri)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setRedirectUri($redirectUri);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getRedirectUri()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::getRedirectUri();
+        }
+        
+        /**
+         * Set OAuth 2.0 "state" parameter to achieve per-request customization.
+         *
+         * @see http://tools.ietf.org/html/draft-ietf-oauth-v2-22#section-3.1.2.2
+         * @param string $state
+         * @static 
+         */ 
+        public static function setState($state)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setState($state);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $accessType Possible values for access_type include:
+         *  {@code "offline"} to request offline access from the user.
+         *  {@code "online"} to request online access from the user.
+         * @static 
+         */ 
+        public static function setAccessType($accessType)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setAccessType($accessType);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $approvalPrompt Possible values for approval_prompt include:
+         *  {@code "force"} to force the approval UI to appear.
+         *  {@code "auto"} to request auto-approval when possible. (This is the default value)
+         * @static 
+         */ 
+        public static function setApprovalPrompt($approvalPrompt)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setApprovalPrompt($approvalPrompt);
+        }
+        
+        /**
+         * Set the login hint, email address or sub id.
+         *
+         * @param string $loginHint
+         * @static 
+         */ 
+        public static function setLoginHint($loginHint)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setLoginHint($loginHint);
+        }
+        
+        /**
+         * Set the application name, this is included in the User-Agent HTTP header.
+         *
+         * @param string $applicationName
+         * @static 
+         */ 
+        public static function setApplicationName($applicationName)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setApplicationName($applicationName);
+        }
+        
+        /**
+         * If 'plus.login' is included in the list of requested scopes, you can use
+         * this method to define types of app activities that your app will write.
+         * 
+         * You can find a list of available types here:
+         *
+         * @link https://developers.google.com/+/api/moment-types
+         * @param array $requestVisibleActions Array of app activity types
+         * @static 
+         */ 
+        public static function setRequestVisibleActions($requestVisibleActions)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setRequestVisibleActions($requestVisibleActions);
+        }
+        
+        /**
+         * Set the developer key to use, these are obtained through the API Console.
+         *
+         * @see http://code.google.com/apis/console-help/#generatingdevkeys
+         * @param string $developerKey
+         * @static 
+         */ 
+        public static function setDeveloperKey($developerKey)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setDeveloperKey($developerKey);
+        }
+        
+        /**
+         * Set the hd (hosted domain) parameter streamlines the login process for
+         * Google Apps hosted accounts. By including the domain of the user, you
+         * restrict sign-in to accounts at that domain.
+         *
+         * @param $hd string - the domain to use.
+         * @static 
+         */ 
+        public static function setHostedDomain($hd)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setHostedDomain($hd);
+        }
+        
+        /**
+         * Set the prompt hint. Valid values are none, consent and select_account.
+         * 
+         * If no value is specified and the user has not previously authorized
+         * access, then the user is shown a consent screen.
+         *
+         * @param $prompt string
+         * @static 
+         */ 
+        public static function setPrompt($prompt)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setPrompt($prompt);
+        }
+        
+        /**
+         * openid.realm is a parameter from the OpenID 2.0 protocol, not from OAuth
+         * 2.0. It is used in OpenID 2.0 requests to signify the URL-space for which
+         * an authentication request is valid.
+         *
+         * @param $realm string - the URL-space to use.
+         * @static 
+         */ 
+        public static function setOpenidRealm($realm)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setOpenidRealm($realm);
+        }
+        
+        /**
+         * If this is provided with the value true, and the authorization request is
+         * granted, the authorization will include any previous authorizations
+         * granted to this user/application combination for other scopes.
+         *
+         * @param $include boolean - the URL-space to use.
+         * @static 
+         */ 
+        public static function setIncludeGrantedScopes($include)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setIncludeGrantedScopes($include);
+        }
+        
+        /**
+         * sets function to be called when an access token is fetched
+         *
+         * @param callable $tokenCallback - function ($cacheKey, $accessToken)
+         * @static 
+         */ 
+        public static function setTokenCallback($tokenCallback)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setTokenCallback($tokenCallback);
+        }
+        
+        /**
+         * Revoke an OAuth2 access token or refresh token. This method will revoke the current access
+         * token, if a token isn't provided.
+         *
+         * @param string|null $token The token (access token or a refresh token) that should be revoked.
+         * @return boolean Returns True if the revocation was successful, otherwise False.
+         * @static 
+         */ 
+        public static function revokeToken($token = null)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::revokeToken($token);
+        }
+        
+        /**
+         * Verify an id_token. This method will verify the current id_token, if one
+         * isn't provided.
+         *
+         * @throws LogicException
+         * @param string|null $idToken The token (id_token) that should be verified.
+         * @return array|false Returns the token payload as an array if the verification was
+         * successful, false otherwise.
+         * @static 
+         */ 
+        public static function verifyIdToken($idToken = null)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::verifyIdToken($idToken);
+        }
+        
+        /**
+         * Set the scopes to be requested. Must be called before createAuthUrl().
+         * 
+         * Will remove any previously configured scopes.
+         *
+         * @param array $scopes, ie: array('https://www.googleapis.com/auth/plus.login',
+         * 'https://www.googleapis.com/auth/moderator')
+         * @static 
+         */ 
+        public static function setScopes($scopes)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setScopes($scopes);
+        }
+        
+        /**
+         * This functions adds a scope to be requested as part of the OAuth2.0 flow.
+         * 
+         * Will append any scopes not previously requested to the scope parameter.
+         * A single string will be treated as a scope to request. An array of strings
+         * will each be appended.
+         *
+         * @param $scope_or_scopes string|array e.g. "profile"
+         * @static 
+         */ 
+        public static function addScope($scope_or_scopes)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::addScope($scope_or_scopes);
+        }
+        
+        /**
+         * Returns the list of scopes requested by the client
+         *
+         * @return array the list of scopes
+         * @static 
+         */ 
+        public static function getScopes()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::getScopes();
+        }
+        
+        /**
+         * 
+         *
+         * @return array 
+         * @visible For Testing
+         * @static 
+         */ 
+        public static function prepareScopes()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::prepareScopes();
+        }
+        
+        /**
+         * Helper method to execute deferred HTTP requests.
+         *
+         * @param $request Psr\Http\Message\RequestInterface|Google_Http_Batch
+         * @throws Google_Exception
+         * @return object of the type of the expected class or Psr\Http\Message\ResponseInterface.
+         * @static 
+         */ 
+        public static function execute($request, $expectedClass = null)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::execute($request, $expectedClass);
+        }
+        
+        /**
+         * Declare whether batch calls should be used. This may increase throughput
+         * by making multiple requests in one connection.
+         *
+         * @param boolean $useBatch True if the batch support should
+         * be enabled. Defaults to False.
+         * @static 
+         */ 
+        public static function setUseBatch($useBatch)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setUseBatch($useBatch);
+        }
+        
+        /**
+         * Are we running in Google AppEngine?
+         * return bool
+         *
+         * @static 
+         */ 
+        public static function isAppEngine()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::isAppEngine();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setConfig($name, $value)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setConfig($name, $value);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getConfig($name, $default = null)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::getConfig($name, $default);
+        }
+        
+        /**
+         * For backwards compatibility
+         * alias for setAuthConfig
+         *
+         * @param string $file the configuration file
+         * @throws Google_Exception
+         * @deprecated 
+         * @static 
+         */ 
+        public static function setAuthConfigFile($file)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setAuthConfigFile($file);
+        }
+        
+        /**
+         * Set the auth config from new or deprecated JSON config.
+         * 
+         * This structure should match the file downloaded from
+         * the "Download JSON" button on in the Google Developer
+         * Console.
+         *
+         * @param string|array $config the configuration json
+         * @throws Google_Exception
+         * @static 
+         */ 
+        public static function setAuthConfig($config)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setAuthConfig($config);
+        }
+        
+        /**
+         * Use when the service account has been delegated domain wide access.
+         *
+         * @param string  subject an email address account to impersonate
+         * @static 
+         */ 
+        public static function setSubject($subject)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setSubject($subject);
+        }
+        
+        /**
+         * Declare whether making API calls should make the call immediately, or
+         * return a request which can be called with ->execute();
+         *
+         * @param boolean $defer True if calls should not be executed right away.
+         * @static 
+         */ 
+        public static function setDefer($defer)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setDefer($defer);
+        }
+        
+        /**
+         * Whether or not to return raw requests
+         *
+         * @return boolean 
+         * @static 
+         */ 
+        public static function shouldDefer()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::shouldDefer();
+        }
+        
+        /**
+         * 
+         *
+         * @return \Google\Auth\OAuth2 implementation
+         * @static 
+         */ 
+        public static function getOAuth2Service()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::getOAuth2Service();
+        }
+        
+        /**
+         * Set the Cache object
+         *
+         * @param \Psr\Cache\CacheItemPoolInterface $cache
+         * @static 
+         */ 
+        public static function setCache($cache)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setCache($cache);
+        }
+        
+        /**
+         * 
+         *
+         * @return \Psr\Cache\CacheItemPoolInterface Cache implementation
+         * @static 
+         */ 
+        public static function getCache()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::getCache();
+        }
+        
+        /**
+         * 
+         *
+         * @return \Google\Auth\CacheInterface Cache implementation
+         * @static 
+         */ 
+        public static function setCacheConfig($cacheConfig)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setCacheConfig($cacheConfig);
+        }
+        
+        /**
+         * Set the Logger object
+         *
+         * @param \Psr\Log\LoggerInterface $logger
+         * @static 
+         */ 
+        public static function setLogger($logger)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setLogger($logger);
+        }
+        
+        /**
+         * 
+         *
+         * @return \Psr\Log\LoggerInterface implementation
+         * @static 
+         */ 
+        public static function getLogger()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::getLogger();
+        }
+        
+        /**
+         * Set the Http Client object
+         *
+         * @param \GuzzleHttp\ClientInterface $http
+         * @static 
+         */ 
+        public static function setHttpClient($http)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::setHttpClient($http);
+        }
+        
+        /**
+         * 
+         *
+         * @return \GuzzleHttp\ClientInterface implementation
+         * @static 
+         */ 
+        public static function getHttpClient()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GmailService::getHttpClient();
+        }
+         
+    }
+
+    class GDriveFacade {
+        
+        /**
+         * Save access token into session.
+         *
+         * @param array $accessToken
+         * @static 
+         */ 
+        public static function saveAccessToken($accessToken)
+        {
+            return \App\Services\GDriveService::saveAccessToken($accessToken);
+        }
+        
+        /**
+         * Set token from session and refresh if it expired.
+         *
+         * @static 
+         */ 
+        public static function setToken()
+        {
+            return \App\Services\GDriveService::setToken();
+        }
+        
+        /**
+         * Get auth url.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getAuthUrl()
+        {
+            return \App\Services\GDriveService::getAuthUrl();
+        }
+        
+        /**
+         * Insert file in google disk.
+         *
+         * @param string $title
+         * @param string $mimeType
+         * @param string $data
+         * @param string $folderId
+         * @return \Google_Service_Drive_DriveFile 
+         * @static 
+         */ 
+        public static function insertFile($title, $mimeType, $data, $folderId)
+        {
+            return \App\Services\GDriveService::insertFile($title, $mimeType, $data, $folderId);
+        }
+        
+        /**
+         * Create folder.
+         *
+         * @param string $name
+         * @return string 
+         * @static 
+         */ 
+        public static function createFolder($name)
+        {
+            return \App\Services\GDriveService::createFolder($name);
+        }
+        
+        /**
+         * Get a string containing the version of the library.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getLibraryVersion()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::getLibraryVersion();
+        }
+        
+        /**
+         * For backwards compatibility
+         * alias for fetchAccessTokenWithAuthCode
+         *
+         * @param $code string code from accounts.google.com
+         * @return array access token
+         * @deprecated 
+         * @static 
+         */ 
+        public static function authenticate($code)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::authenticate($code);
+        }
+        
+        /**
+         * Attempt to exchange a code for an valid authentication token.
+         * 
+         * Helper wrapped around the OAuth 2.0 implementation.
+         *
+         * @param $code string code from accounts.google.com
+         * @return array access token
+         * @static 
+         */ 
+        public static function fetchAccessTokenWithAuthCode($code)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::fetchAccessTokenWithAuthCode($code);
+        }
+        
+        /**
+         * For backwards compatibility
+         * alias for fetchAccessTokenWithAssertion
+         *
+         * @return array access token
+         * @deprecated 
+         * @static 
+         */ 
+        public static function refreshTokenWithAssertion()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::refreshTokenWithAssertion();
+        }
+        
+        /**
+         * Fetches a fresh access token with a given assertion token.
+         *
+         * @param $assertionCredentials optional.
+         * @return array access token
+         * @static 
+         */ 
+        public static function fetchAccessTokenWithAssertion($authHttp = null)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::fetchAccessTokenWithAssertion($authHttp);
+        }
+        
+        /**
+         * For backwards compatibility
+         * alias for fetchAccessTokenWithRefreshToken
+         *
+         * @param string $refreshToken
+         * @return array access token
+         * @static 
+         */ 
+        public static function refreshToken($refreshToken)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::refreshToken($refreshToken);
+        }
+        
+        /**
+         * Fetches a fresh OAuth 2.0 access token with the given refresh token.
+         *
+         * @param string $refreshToken
+         * @return array access token
+         * @static 
+         */ 
+        public static function fetchAccessTokenWithRefreshToken($refreshToken = null)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::fetchAccessTokenWithRefreshToken($refreshToken);
+        }
+        
+        /**
+         * Create a URL to obtain user authorization.
+         * 
+         * The authorization endpoint allows the user to first
+         * authenticate, and then grant/deny the access request.
+         *
+         * @param string|array $scope The scope is expressed as an array or list of space-delimited strings.
+         * @return string 
+         * @static 
+         */ 
+        public static function createAuthUrl($scope = null)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::createAuthUrl($scope);
+        }
+        
+        /**
+         * Adds auth listeners to the HTTP client based on the credentials
+         * set in the Google API Client object
+         *
+         * @param \GuzzleHttp\ClientInterface $http the http client object.
+         * @return \GuzzleHttp\ClientInterface the http client object
+         * @static 
+         */ 
+        public static function authorize($http = null)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::authorize($http);
+        }
+        
+        /**
+         * Set the configuration to use application default credentials for
+         * authentication
+         *
+         * @see https://developers.google.com/identity/protocols/application-default-credentials
+         * @param boolean $useAppCreds
+         * @static 
+         */ 
+        public static function useApplicationDefaultCredentials($useAppCreds = true)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::useApplicationDefaultCredentials($useAppCreds);
+        }
+        
+        /**
+         * To prevent useApplicationDefaultCredentials from inappropriately being
+         * called in a conditional
+         *
+         * @see https://developers.google.com/identity/protocols/application-default-credentials
+         * @static 
+         */ 
+        public static function isUsingApplicationDefaultCredentials()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::isUsingApplicationDefaultCredentials();
+        }
+        
+        /**
+         * 
+         *
+         * @param string|array $token
+         * @throws InvalidArgumentException
+         * @static 
+         */ 
+        public static function setAccessToken($token)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setAccessToken($token);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getAccessToken()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::getAccessToken();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getRefreshToken()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::getRefreshToken();
+        }
+        
+        /**
+         * Returns if the access_token is expired.
+         *
+         * @return bool Returns True if the access_token is expired.
+         * @static 
+         */ 
+        public static function isAccessTokenExpired()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::isAccessTokenExpired();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getAuth()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::getAuth();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setAuth($auth)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setAuth($auth);
+        }
+        
+        /**
+         * Set the OAuth 2.0 Client ID.
+         *
+         * @param string $clientId
+         * @static 
+         */ 
+        public static function setClientId($clientId)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setClientId($clientId);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getClientId()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::getClientId();
+        }
+        
+        /**
+         * Set the OAuth 2.0 Client Secret.
+         *
+         * @param string $clientSecret
+         * @static 
+         */ 
+        public static function setClientSecret($clientSecret)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setClientSecret($clientSecret);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getClientSecret()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::getClientSecret();
+        }
+        
+        /**
+         * Set the OAuth 2.0 Redirect URI.
+         *
+         * @param string $redirectUri
+         * @static 
+         */ 
+        public static function setRedirectUri($redirectUri)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setRedirectUri($redirectUri);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getRedirectUri()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::getRedirectUri();
+        }
+        
+        /**
+         * Set OAuth 2.0 "state" parameter to achieve per-request customization.
+         *
+         * @see http://tools.ietf.org/html/draft-ietf-oauth-v2-22#section-3.1.2.2
+         * @param string $state
+         * @static 
+         */ 
+        public static function setState($state)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setState($state);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $accessType Possible values for access_type include:
+         *  {@code "offline"} to request offline access from the user.
+         *  {@code "online"} to request online access from the user.
+         * @static 
+         */ 
+        public static function setAccessType($accessType)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setAccessType($accessType);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $approvalPrompt Possible values for approval_prompt include:
+         *  {@code "force"} to force the approval UI to appear.
+         *  {@code "auto"} to request auto-approval when possible. (This is the default value)
+         * @static 
+         */ 
+        public static function setApprovalPrompt($approvalPrompt)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setApprovalPrompt($approvalPrompt);
+        }
+        
+        /**
+         * Set the login hint, email address or sub id.
+         *
+         * @param string $loginHint
+         * @static 
+         */ 
+        public static function setLoginHint($loginHint)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setLoginHint($loginHint);
+        }
+        
+        /**
+         * Set the application name, this is included in the User-Agent HTTP header.
+         *
+         * @param string $applicationName
+         * @static 
+         */ 
+        public static function setApplicationName($applicationName)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setApplicationName($applicationName);
+        }
+        
+        /**
+         * If 'plus.login' is included in the list of requested scopes, you can use
+         * this method to define types of app activities that your app will write.
+         * 
+         * You can find a list of available types here:
+         *
+         * @link https://developers.google.com/+/api/moment-types
+         * @param array $requestVisibleActions Array of app activity types
+         * @static 
+         */ 
+        public static function setRequestVisibleActions($requestVisibleActions)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setRequestVisibleActions($requestVisibleActions);
+        }
+        
+        /**
+         * Set the developer key to use, these are obtained through the API Console.
+         *
+         * @see http://code.google.com/apis/console-help/#generatingdevkeys
+         * @param string $developerKey
+         * @static 
+         */ 
+        public static function setDeveloperKey($developerKey)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setDeveloperKey($developerKey);
+        }
+        
+        /**
+         * Set the hd (hosted domain) parameter streamlines the login process for
+         * Google Apps hosted accounts. By including the domain of the user, you
+         * restrict sign-in to accounts at that domain.
+         *
+         * @param $hd string - the domain to use.
+         * @static 
+         */ 
+        public static function setHostedDomain($hd)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setHostedDomain($hd);
+        }
+        
+        /**
+         * Set the prompt hint. Valid values are none, consent and select_account.
+         * 
+         * If no value is specified and the user has not previously authorized
+         * access, then the user is shown a consent screen.
+         *
+         * @param $prompt string
+         * @static 
+         */ 
+        public static function setPrompt($prompt)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setPrompt($prompt);
+        }
+        
+        /**
+         * openid.realm is a parameter from the OpenID 2.0 protocol, not from OAuth
+         * 2.0. It is used in OpenID 2.0 requests to signify the URL-space for which
+         * an authentication request is valid.
+         *
+         * @param $realm string - the URL-space to use.
+         * @static 
+         */ 
+        public static function setOpenidRealm($realm)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setOpenidRealm($realm);
+        }
+        
+        /**
+         * If this is provided with the value true, and the authorization request is
+         * granted, the authorization will include any previous authorizations
+         * granted to this user/application combination for other scopes.
+         *
+         * @param $include boolean - the URL-space to use.
+         * @static 
+         */ 
+        public static function setIncludeGrantedScopes($include)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setIncludeGrantedScopes($include);
+        }
+        
+        /**
+         * sets function to be called when an access token is fetched
+         *
+         * @param callable $tokenCallback - function ($cacheKey, $accessToken)
+         * @static 
+         */ 
+        public static function setTokenCallback($tokenCallback)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setTokenCallback($tokenCallback);
+        }
+        
+        /**
+         * Revoke an OAuth2 access token or refresh token. This method will revoke the current access
+         * token, if a token isn't provided.
+         *
+         * @param string|null $token The token (access token or a refresh token) that should be revoked.
+         * @return boolean Returns True if the revocation was successful, otherwise False.
+         * @static 
+         */ 
+        public static function revokeToken($token = null)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::revokeToken($token);
+        }
+        
+        /**
+         * Verify an id_token. This method will verify the current id_token, if one
+         * isn't provided.
+         *
+         * @throws LogicException
+         * @param string|null $idToken The token (id_token) that should be verified.
+         * @return array|false Returns the token payload as an array if the verification was
+         * successful, false otherwise.
+         * @static 
+         */ 
+        public static function verifyIdToken($idToken = null)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::verifyIdToken($idToken);
+        }
+        
+        /**
+         * Set the scopes to be requested. Must be called before createAuthUrl().
+         * 
+         * Will remove any previously configured scopes.
+         *
+         * @param array $scopes, ie: array('https://www.googleapis.com/auth/plus.login',
+         * 'https://www.googleapis.com/auth/moderator')
+         * @static 
+         */ 
+        public static function setScopes($scopes)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setScopes($scopes);
+        }
+        
+        /**
+         * This functions adds a scope to be requested as part of the OAuth2.0 flow.
+         * 
+         * Will append any scopes not previously requested to the scope parameter.
+         * A single string will be treated as a scope to request. An array of strings
+         * will each be appended.
+         *
+         * @param $scope_or_scopes string|array e.g. "profile"
+         * @static 
+         */ 
+        public static function addScope($scope_or_scopes)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::addScope($scope_or_scopes);
+        }
+        
+        /**
+         * Returns the list of scopes requested by the client
+         *
+         * @return array the list of scopes
+         * @static 
+         */ 
+        public static function getScopes()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::getScopes();
+        }
+        
+        /**
+         * 
+         *
+         * @return array 
+         * @visible For Testing
+         * @static 
+         */ 
+        public static function prepareScopes()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::prepareScopes();
+        }
+        
+        /**
+         * Helper method to execute deferred HTTP requests.
+         *
+         * @param $request Psr\Http\Message\RequestInterface|Google_Http_Batch
+         * @throws Google_Exception
+         * @return object of the type of the expected class or Psr\Http\Message\ResponseInterface.
+         * @static 
+         */ 
+        public static function execute($request, $expectedClass = null)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::execute($request, $expectedClass);
+        }
+        
+        /**
+         * Declare whether batch calls should be used. This may increase throughput
+         * by making multiple requests in one connection.
+         *
+         * @param boolean $useBatch True if the batch support should
+         * be enabled. Defaults to False.
+         * @static 
+         */ 
+        public static function setUseBatch($useBatch)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setUseBatch($useBatch);
+        }
+        
+        /**
+         * Are we running in Google AppEngine?
+         * return bool
+         *
+         * @static 
+         */ 
+        public static function isAppEngine()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::isAppEngine();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setConfig($name, $value)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setConfig($name, $value);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getConfig($name, $default = null)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::getConfig($name, $default);
+        }
+        
+        /**
+         * For backwards compatibility
+         * alias for setAuthConfig
+         *
+         * @param string $file the configuration file
+         * @throws Google_Exception
+         * @deprecated 
+         * @static 
+         */ 
+        public static function setAuthConfigFile($file)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setAuthConfigFile($file);
+        }
+        
+        /**
+         * Set the auth config from new or deprecated JSON config.
+         * 
+         * This structure should match the file downloaded from
+         * the "Download JSON" button on in the Google Developer
+         * Console.
+         *
+         * @param string|array $config the configuration json
+         * @throws Google_Exception
+         * @static 
+         */ 
+        public static function setAuthConfig($config)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setAuthConfig($config);
+        }
+        
+        /**
+         * Use when the service account has been delegated domain wide access.
+         *
+         * @param string  subject an email address account to impersonate
+         * @static 
+         */ 
+        public static function setSubject($subject)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setSubject($subject);
+        }
+        
+        /**
+         * Declare whether making API calls should make the call immediately, or
+         * return a request which can be called with ->execute();
+         *
+         * @param boolean $defer True if calls should not be executed right away.
+         * @static 
+         */ 
+        public static function setDefer($defer)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setDefer($defer);
+        }
+        
+        /**
+         * Whether or not to return raw requests
+         *
+         * @return boolean 
+         * @static 
+         */ 
+        public static function shouldDefer()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::shouldDefer();
+        }
+        
+        /**
+         * 
+         *
+         * @return \Google\Auth\OAuth2 implementation
+         * @static 
+         */ 
+        public static function getOAuth2Service()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::getOAuth2Service();
+        }
+        
+        /**
+         * Set the Cache object
+         *
+         * @param \Psr\Cache\CacheItemPoolInterface $cache
+         * @static 
+         */ 
+        public static function setCache($cache)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setCache($cache);
+        }
+        
+        /**
+         * 
+         *
+         * @return \Psr\Cache\CacheItemPoolInterface Cache implementation
+         * @static 
+         */ 
+        public static function getCache()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::getCache();
+        }
+        
+        /**
+         * 
+         *
+         * @return \Google\Auth\CacheInterface Cache implementation
+         * @static 
+         */ 
+        public static function setCacheConfig($cacheConfig)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setCacheConfig($cacheConfig);
+        }
+        
+        /**
+         * Set the Logger object
+         *
+         * @param \Psr\Log\LoggerInterface $logger
+         * @static 
+         */ 
+        public static function setLogger($logger)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setLogger($logger);
+        }
+        
+        /**
+         * 
+         *
+         * @return \Psr\Log\LoggerInterface implementation
+         * @static 
+         */ 
+        public static function getLogger()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::getLogger();
+        }
+        
+        /**
+         * Set the Http Client object
+         *
+         * @param \GuzzleHttp\ClientInterface $http
+         * @static 
+         */ 
+        public static function setHttpClient($http)
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::setHttpClient($http);
+        }
+        
+        /**
+         * 
+         *
+         * @return \GuzzleHttp\ClientInterface implementation
+         * @static 
+         */ 
+        public static function getHttpClient()
+        {
+            //Method inherited from \Google_Client            
+            return \App\Services\GDriveService::getHttpClient();
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -12158,8 +13717,6 @@ namespace  {
     class Config extends \Illuminate\Support\Facades\Config {}
 
     class Cookie extends \Illuminate\Support\Facades\Cookie {}
-
-    class Crypt extends \Illuminate\Support\Facades\Crypt {}
 
     class DB extends \Illuminate\Support\Facades\DB {}
 
@@ -14250,6 +15807,10 @@ namespace  {
     class Validator extends \Illuminate\Support\Facades\Validator {}
 
     class View extends \Illuminate\Support\Facades\View {}
+
+    class GmailClient extends \App\Facades\GmailFacade {}
+
+    class GDriveClient extends \App\Facades\GDriveFacade {}
  
 }
 
