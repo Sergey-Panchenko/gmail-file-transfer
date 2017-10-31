@@ -38,7 +38,7 @@ class TransferFilesController extends Controller
             return redirect()->back()->with('error', 'Please authorize second user !');
         }
 
-        $transferredFiles = $transferFilesManager->transfer('has:attachment :pdf label:inbox', 4, 'application/pdf');
+        $transferredFiles = $transferFilesManager->transfer('has:attachment :pdf label:inbox', 50, 'application/pdf');
 
         return redirect()->back()->with('transferredFiles', $transferredFiles);
     }
